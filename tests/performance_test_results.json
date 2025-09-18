@@ -1,0 +1,105 @@
+[
+  {
+    "test_name": "concurrent_inference",
+    "num_workers": 3,
+    "total_time": 3.8623809814453125e-05,
+    "worker_results": [
+      {
+        "worker_id": 0,
+        "success": true,
+        "inference_time": 2.6226043701171875e-06,
+        "result_length": 78
+      },
+      {
+        "worker_id": 1,
+        "success": true,
+        "inference_time": 9.5367431640625e-07,
+        "result_length": 78
+      },
+      {
+        "worker_id": 2,
+        "success": true,
+        "inference_time": 4.76837158203125e-07,
+        "result_length": 78
+      }
+    ],
+    "successful_inferences": 3,
+    "timestamp": "2025-08-16 23:32:18"
+  },
+  {
+    "test_name": "gpu_usage",
+    "monitoring_stats": {
+      "cpu": {
+        "max": 12.6,
+        "avg": 6.948780487804878,
+        "min": 0.0
+      },
+      "memory": {
+        "max": 15.3,
+        "avg": 15.202439024390243,
+        "min": 15.2
+      },
+      "gpu": {
+        "max": 0.0,
+        "avg": 0.0,
+        "min": 0.0
+      },
+      "gpu_memory": {
+        "max": 55.6640625,
+        "avg": 55.6640625,
+        "min": 55.6640625
+      }
+    },
+    "timestamp": "2025-08-16 23:32:23"
+  },
+  {
+    "test_name": "inference_speed",
+    "num_tests": 5,
+    "inference_times": [
+      7.152557373046875e-07,
+      1.0728836059570312e-05,
+      1.2636184692382812e-05,
+      1.2159347534179688e-05,
+      1.1920928955078125e-05
+    ],
+    "avg_inference_time": 9.632110595703125e-06,
+    "max_inference_time": 1.2636184692382812e-05,
+    "min_inference_time": 7.152557373046875e-07,
+    "timestamp": "2025-08-16 23:32:26"
+  },
+  {
+    "test_name": "memory_usage",
+    "baseline_memory_percent": 15.3,
+    "model_loaded_memory_percent": 16.2,
+    "memory_increase_percent": 0.8999999999999986,
+    "monitoring_stats": {
+      "cpu": {
+        "max": 20.6,
+        "avg": 10.944318181818183,
+        "min": 5.2
+      },
+      "memory": {
+        "max": 16.2,
+        "avg": 15.705681818181818,
+        "min": 15.3
+      },
+      "gpu": {
+        "max": 45.0,
+        "avg": 15.329545454545455,
+        "min": 0.0
+      },
+      "gpu_memory": {
+        "max": 97.088623046875,
+        "avg": 90.41976928710938,
+        "min": 50.244140625
+      }
+    },
+    "timestamp": "2025-08-16 23:32:38"
+  },
+  {
+    "test_name": "model_loading_time",
+    "base_model_load_time": 8.028795957565308,
+    "checkpoint_669_load_time": 10.609821081161499,
+    "timestamp": "2025-08-16 23:32:58"
+  }
+]

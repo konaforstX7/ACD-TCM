@@ -1,0 +1,349 @@
+{
+  "test_configuration": {
+    "version": "1.0",
+    "description": "checkpoint-669痤疮诊断模型测试用例配置",
+    "created_date": "2024-01-15",
+    "model_info": {
+      "base_model": "Qwen2.5-VL-7B",
+      "checkpoint": "checkpoint-669",
+      "task": "acne_diagnosis",
+      "model_path": "/root/autodl-tmp/Qwen/Qwen2.5-VL/output/Qwen2_5-VL-7B-Acne/checkpoint-669"
+    }
+  },
+  "test_suites": {
+    "unit_tests": {
+      "description": "单元测试 - 测试模型加载和基础功能",
+      "test_file": "test_model_loading.py",
+      "test_cases": [
+        {
+          "name": "test_base_model_path_exists",
+          "description": "验证基础模型路径存在",
+          "expected_result": "pass",
+          "timeout": 10
+        },
+        {
+          "name": "test_checkpoint_path_exists",
+          "description": "验证checkpoint路径存在",
+          "expected_result": "pass",
+          "timeout": 10
+        },
+        {
+          "name": "test_checkpoint_files_exist",
+          "description": "验证checkpoint必要文件存在",
+          "expected_result": "pass",
+          "timeout": 10
+        },
+        {
+          "name": "test_get_available_checkpoints",
+          "description": "测试获取可用checkpoints功能",
+          "expected_result": "pass",
+          "timeout": 30
+        },
+        {
+          "name": "test_model_initialization",
+          "description": "测试模型初始化",
+          "expected_result": "pass",
+          "timeout": 30
+        },
+        {
+          "name": "test_load_base_model",
+          "description": "测试加载基础模型",
+          "expected_result": "pass",
+          "timeout": 300
+        },
+        {
+          "name": "test_load_checkpoint_669",
+          "description": "测试加载checkpoint-669",
+          "expected_result": "pass",
+          "timeout": 300
+        },
+        {
+          "name": "test_model_switching",
+          "description": "测试模型切换功能",
+          "expected_result": "pass",
+          "timeout": 600
+        },
+        {
+          "name": "test_invalid_model_loading",
+          "description": "测试加载无效模型",
+          "expected_result": "pass",
+          "timeout": 60
+        },
+        {
+          "name": "test_memory_cleanup",
+          "description": "测试内存清理功能",
+          "expected_result": "pass",
+          "timeout": 60
+        }
+      ]
+    },
+    "integration_tests": {
+      "description": "集成测试 - 测试痤疮诊断功能",
+      "test_file": "test_acne_diagnosis.py",
+      "test_cases": [
+        {
+          "name": "test_load_checkpoint_669",
+          "description": "测试加载checkpoint-669模型",
+          "expected_result": "pass",
+          "timeout": 300
+        },
+        {
+          "name": "test_diagnose_normal_skin",
+          "description": "测试诊断正常皮肤",
+          "expected_result": "pass",
+          "timeout": 120,
+          "test_data": {
+            "image_type": "normal_skin",
+            "expected_keywords": ["皮肤", "正常", "健康"]
+          }
+        },
+        {
+          "name": "test_diagnose_mild_acne",
+          "description": "测试诊断轻度痤疮",
+          "expected_result": "pass",
+          "timeout": 120,
+          "test_data": {
+            "image_type": "mild_acne",
+            "expected_keywords": ["痤疮", "轻度", "治疗"]
+          }
+        },
+        {
+          "name": "test_diagnose_severe_acne",
+          "description": "测试诊断重度痤疮",
+          "expected_result": "pass",
+          "timeout": 120,
+          "test_data": {
+            "image_type": "severe_acne",
+            "expected_keywords": ["痤疮", "重度", "严重"]
+          }
+        },
+        {
+          "name": "test_diagnose_different_skin_tones",
+          "description": "测试不同肤色的诊断",
+          "expected_result": "pass",
+          "timeout": 240,
+          "test_data": {
+            "skin_tones": ["dark_skin", "light_skin"],
+            "expected_behavior": "consistent_diagnosis"
+          }
+        },
+        {
+          "name": "test_invalid_image_handling",
+          "description": "测试无效图片处理",
+          "expected_result": "pass",
+          "timeout": 60
+        },
+        {
+          "name": "test_batch_diagnosis",
+          "description": "测试批量诊断",
+          "expected_result": "pass",
+          "timeout": 360,
+          "test_data": {
+            "batch_size": 3,
+            "expected_success_rate": 1.0
+          }
+        },
+        {
+          "name": "test_diagnosis_consistency",
+          "description": "测试诊断一致性",
+          "expected_result": "pass",
+          "timeout": 180,
+          "test_data": {
+            "repeat_count": 3,
+            "consistency_threshold": 0.8
+          }
+        },
+        {
+          "name": "test_diagnosis_response_format",
+          "description": "测试诊断响应格式",
+          "expected_result": "pass",
+          "timeout": 120
+        }
+      ]
+    },
+    "performance_tests": {
+      "description": "性能测试 - 测试推理速度和资源使用",
+      "test_file": "test_performance.py",
+      "test_cases": [
+        {
+          "name": "test_model_loading_time",
+          "description": "测试模型加载时间",
+          "expected_result": "pass",
+          "timeout": 600,
+          "performance_criteria": {
+            "max_base_load_time": 300,
+            "max_checkpoint_load_time": 300
+          }
+        },
+        {
+          "name": "test_inference_speed",
+          "description": "测试推理速度",
+          "expected_result": "pass",
+          "timeout": 300,
+          "performance_criteria": {
+            "max_avg_inference_time": 60,
+            "max_single_inference_time": 120,
+            "num_test_runs": 5
+          }
+        },
+        {
+          "name": "test_memory_usage",
+          "description": "测试内存使用情况",
+          "expected_result": "pass",
+          "timeout": 180,
+          "performance_criteria": {
+            "max_memory_increase_percent": 80,
+            "monitoring_duration": 60
+          }
+        },
+        {
+          "name": "test_gpu_usage",
+          "description": "测试GPU使用情况",
+          "expected_result": "pass",
+          "timeout": 180,
+          "performance_criteria": {
+            "min_gpu_utilization": 10,
+            "max_gpu_memory_usage": 95
+          }
+        },
+        {
+          "name": "test_concurrent_inference",
+          "description": "测试并发推理性能",
+          "expected_result": "pass",
+          "timeout": 240,
+          "performance_criteria": {
+            "concurrent_workers": 3,
+            "success_rate": 1.0
+          }
+        },
+        {
+          "name": "test_system_requirements",
+          "description": "测试系统要求",
+          "expected_result": "pass",
+          "timeout": 30,
+          "system_requirements": {
+            "min_memory_gb": 8,
+            "min_cpu_cores": 4,
+            "gpu_required": true
+          }
+        }
+      ]
+    }
+  },
+  "test_scenarios": {
+    "smoke_test": {
+      "description": "冒烟测试 - 快速验证基本功能",
+      "tests": [
+        "unit_tests.test_checkpoint_path_exists",
+        "unit_tests.test_model_initialization",
+        "integration_tests.test_load_checkpoint_669",
+        "integration_tests.test_diagnose_normal_skin"
+      ],
+      "max_duration": 600
+    },
+    "full_regression": {
+      "description": "完整回归测试 - 运行所有测试",
+      "tests": "all",
+      "max_duration": 3600
+    },
+    "performance_benchmark": {
+      "description": "性能基准测试",
+      "tests": [
+        "performance_tests.test_model_loading_time",
+        "performance_tests.test_inference_speed",
+        "performance_tests.test_memory_usage",
+        "performance_tests.test_gpu_usage"
+      ],
+      "max_duration": 1200
+    },
+    "diagnosis_accuracy": {
+      "description": "诊断准确性测试",
+      "tests": [
+        "integration_tests.test_diagnose_normal_skin",
+        "integration_tests.test_diagnose_mild_acne",
+        "integration_tests.test_diagnose_severe_acne",
+        "integration_tests.test_diagnose_different_skin_tones",
+        "integration_tests.test_diagnosis_consistency"
+      ],
+      "max_duration": 900
+    }
+  },
+  "test_data": {
+    "image_types": {
+      "normal_skin": {
+        "description": "正常健康皮肤",
+        "file_pattern": "normal_skin*.jpg",
+        "expected_diagnosis": "健康皮肤，无明显痤疮症状"
+      },
+      "mild_acne": {
+        "description": "轻度痤疮",
+        "file_pattern": "acne_mild*.jpg",
+        "expected_diagnosis": "轻度痤疮，建议基础护理"
+      },
+      "severe_acne": {
+        "description": "重度痤疮",
+        "file_pattern": "acne_severe*.jpg",
+        "expected_diagnosis": "重度痤疮，需要专业治疗"
+      },
+      "dark_skin": {
+        "description": "深色皮肤",
+        "file_pattern": "dark_skin*.jpg",
+        "expected_behavior": "正常诊断，不受肤色影响"
+      },
+      "light_skin": {
+        "description": "浅色皮肤",
+        "file_pattern": "light_skin*.jpg",
+        "expected_behavior": "正常诊断，不受肤色影响"
+      }
+    },
+    "test_images_directory": "/root/autodl-tmp/test/test_images",
+    "results_directory": "/root/autodl-tmp/test/results"
+  },
+  "environment": {
+    "python_version": "3.8+",
+    "required_packages": [
+      "torch",
+      "transformers",
+      "peft",
+      "pillow",
+      "psutil",
+      "gputil"
+    ],
+    "gpu_requirements": {
+      "min_memory_gb": 8,
+      "cuda_version": "11.0+"
+    },
+    "system_requirements": {
+      "min_ram_gb": 16,
+      "min_storage_gb": 50
+    }
+  },
+  "reporting": {
+    "output_formats": ["json", "html", "markdown"],
+    "include_performance_metrics": true,
+    "include_error_details": true,
+    "include_system_info": true,
+    "generate_charts": false
+  },
+  "thresholds": {
+    "performance": {
+      "max_model_load_time_seconds": 300,
+      "max_inference_time_seconds": 60,
+      "max_memory_usage_percent": 80,
+      "min_success_rate": 0.95
+    },
+    "quality": {
+      "min_diagnosis_length": 10,
+      "max_diagnosis_length": 5000,
+      "required_keywords": ["皮肤", "痤疮"],
+      "consistency_threshold": 0.8
+    }
+  },
+  "error_handling": {
+    "retry_failed_tests": true,
+    "max_retries": 2,
+    "continue_on_failure": true,
+    "capture_screenshots": false,
+    "save_error_logs": true
+  }
+}

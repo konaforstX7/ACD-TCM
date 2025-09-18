@@ -1,0 +1,105 @@
+{
+  "summary": {
+    "total": 25,
+    "passed": 25,
+    "failed": 0,
+    "errors": 0,
+    "success_rate": 100.0
+  },
+  "unit_tests": {},
+  "integration_tests": {},
+  "performance_tests": {},
+  "system_info": {
+    "timestamp": "2025-08-16T23:30:14.555760",
+    "platform": {
+      "system": "Linux",
+      "release": "5.4.0-149-generic",
+      "version": "#166-Ubuntu SMP Tue Apr 18 16:51:45 UTC 2023",
+      "machine": "x86_64",
+      "processor": "x86_64"
+    },
+    "python": {
+      "version": "3.12.3",
+      "implementation": "CPython"
+    },
+    "hardware": {
+      "cpu_count": 52,
+      "memory_total_gb": 214.3,
+      "memory_available_gb": 186.4
+    },
+    "gpu": {
+      "error": "cannot access local variable 'torch' where it is not associated with a value"
+    },
+    "packages": {
+      "torch": "2.7.1+cu126",
+      "transformers": "4.55.0.dev0",
+      "peft": "0.13.2",
+      "pillow": "10.3.0",
+      "psutil": "5.9.8"
+    }
+  },
+  "errors": [],
+  "start_time": "2025-08-16T23:30:14.555724",
+  "end_time": "2025-08-16T23:32:58.802927",
+  "duration": 164.25,
+  "scenario": {
+    "name": "full_regression",
+    "description": "完整回归测试 - 运行所有测试",
+    "status": "passed",
+    "tests": [
+      {
+        "name": "unit_tests",
+        "result": {
+          "status": "passed",
+          "tests_run": 10,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "duration": 75.25,
+          "details": {
+            "failures": [],
+            "errors": []
+          }
+        }
+      },
+      {
+        "name": "integration_tests",
+        "result": {
+          "status": "passed",
+          "tests_run": 9,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 6,
+          "duration": 34.31,
+          "details": {
+            "failures": [],
+            "errors": []
+          }
+        }
+      },
+      {
+        "name": "performance_tests",
+        "result": {
+          "status": "passed",
+          "tests_run": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "duration": 50.89,
+          "details": {
+            "failures": [],
+            "errors": []
+          }
+        }
+      }
+    ],
+    "summary": {
+      "total": 25,
+      "passed": 25,
+      "failed": 0,
+      "errors": 0,
+      "success_rate": 100.0
+    },
+    "duration": 160.45
+  }
+}

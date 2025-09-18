@@ -1,0 +1,397 @@
+# ============================================================================
+# 模型配置 (Model Configuration)
+# ============================================================================
+model:
+  # 模型名称
+  name: "Qwen2.5-VL-7B-Instruct"
+  
+  # 模型路径 (相对于项目根目录)
+  path: "models/checkpoint-669"
+  
+  # 设备配置 (auto: 自动选择, cpu: CPU, cuda: GPU)
+  device: "auto"
+  
+  # 精度配置 (fp32: 32位浮点, fp16: 16位浮点, int8: 8位整数)
+  precision: "fp16"
+  
+  # 最大序列长度
+  max_length: 2048
+  
+  # 模型量化配置
+  quantization:
+    enabled: false
+    method: "dynamic"  # dynamic, static, qat
+    backend: "fbgemm"  # fbgemm, qnnpack
+  
+  # 模型优化配置
+  optimization:
+    torch_compile: false
+    torch_script: false
+    onnx_export: false
+
+# ============================================================================
+# 服务配置 (Server Configuration)
+# ============================================================================
+server:
+  # 服务主机地址
+  host: "0.0.0.0"
+  
+  # 服务端口
+  port: 7861
+  
+  # 工作进程数
+  workers: 1
+  
+  # 请求超时时间 (秒)
+  timeout: 300
+  
+  # 最大请求大小 (MB)
+  max_request_size: 50
+  
+  # 启用HTTPS
+  https:
+    enabled: false
+    cert_file: ""
+    key_file: ""
+  
+  # CORS配置
+  cors:
+    enabled: true
+    origins: ["*"]
+    methods: ["GET", "POST", "PUT", "DELETE"]
+    headers: ["*"]
+
+# ============================================================================
+# 推理配置 (Inference Configuration)
+# ============================================================================
+inference:
+  # 批处理大小
+  batch_size: 1
+  
+  # 生成参数
+  generation:
+    temperature: 0.7
+    top_p: 0.9
+    top_k: 50
+    do_sample: true
+    num_beams: 1
+    repetition_penalty: 1.1
+    length_penalty: 1.0
+    early_stopping: true
+  
+  # 缓存配置
+  cache:
+    enabled: true
+    size: 100
+    ttl: 3600  # 缓存生存时间 (秒)
+    backend: "memory"  # memory, redis
+  
+  # 图像预处理配置
+  image_preprocessing:
+    resize: [512, 512]
+    normalize: true
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+    format: "RGB"
+  
+  # 文本预处理配置
+  text_preprocessing:
+    max_length: 512
+    truncation: true
+    padding: true
+    clean_text: true
+
+# ============================================================================
+# 数据库配置 (Database Configuration)
+# ============================================================================
+database:
+  # 数据库URL
+  url: "sqlite:///data/acd-tcm.db"
+  
+  # 是否输出SQL语句
+  echo: false
+  
+  # 连接池大小
+  pool_size: 10
+  
+  # 连接池溢出大小
+  max_overflow: 20
+  
+  # 连接回收时间 (秒)
+  pool_recycle: 3600
+  
+  # 连接超时时间 (秒)
+  pool_timeout: 30
+  
+  # 自动创建表
+  create_tables: true
+
+# ============================================================================
+# Redis配置 (Redis Configuration)
+# ============================================================================
+redis:
+  # Redis主机
+  host: "localhost"
+  
+  # Redis端口
+  port: 6379
+  
+  # Redis数据库
+  db: 0
+  
+  # Redis密码
+  password: ""
+  
+  # 连接池大小
+  max_connections: 10
+  
+  # 连接超时时间 (秒)
+  socket_timeout: 5
+  
+  # 健康检查间隔 (秒)
+  health_check_interval: 30
+
+# ============================================================================
+# 日志配置 (Logging Configuration)
+# ============================================================================
+logging:
+  # 日志级别 (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+  level: "INFO"
+  
+  # 日志文件路径
+  file: "logs/acd-tcm.log"
+  
+  # 日志文件最大大小
+  max_size: "100MB"
+  
+  # 备份文件数量
+  backup_count: 5
+  
+  # 日志格式
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # 日期格式
+  date_format: "%Y-%m-%d %H:%M:%S"
+  
+  # 控制台输出
+  console:
+    enabled: true
+    level: "INFO"
+  
+  # 文件输出
+  file_handler:
+    enabled: true
+    level: "DEBUG"
+  
+  # 错误日志单独文件
+  error_file:
+    enabled: true
+    file: "logs/error.log"
+    level: "ERROR"
+
+# ============================================================================
+# 监控配置 (Monitoring Configuration)
+# ============================================================================
+monitoring:
+  # 启用监控
+  enabled: true
+  
+  # 监控端口
+  port: 8080
+  
+  # 指标收集间隔 (秒)
+  interval: 60
+  
+  # Prometheus配置
+  prometheus:
+    enabled: true
+    endpoint: "/metrics"
+  
+  # 健康检查配置
+  health_check:
+    enabled: true
+    endpoint: "/health"
+    interval: 30
+  
+  # 性能监控
+  performance:
+    enabled: true
+    track_inference_time: true
+    track_memory_usage: true
+    track_gpu_usage: true
+
+# ============================================================================
+# 安全配置 (Security Configuration)
+# ============================================================================
+security:
+  # 密钥 (用于JWT等)
+  secret_key: "your-secret-key-change-in-production"
+  
+  # JWT配置
+  jwt:
+    expiration: 3600  # 过期时间 (秒)
+    algorithm: "HS256"
+    issuer: "acd-tcm"
+  
+  # API限流配置
+  rate_limit:
+    enabled: true
+    default: "100/hour"
+    per_ip: "50/hour"
+    per_user: "200/hour"
+  
+  # 数据加密
+  encryption:
+    enabled: true
+    algorithm: "AES-256-GCM"
+    key_rotation: 86400  # 密钥轮换间隔 (秒)
+  
+  # 访问控制
+  access_control:
+    enabled: true
+    whitelist: []
+    blacklist: []
+    require_auth: false
+
+# ============================================================================
+# 文件存储配置 (File Storage Configuration)
+# ============================================================================
+storage:
+  # 本地存储配置
+  local:
+    enabled: true
+    base_path: "data/uploads"
+    max_file_size: "10MB"
+    allowed_extensions: [".jpg", ".jpeg", ".png", ".bmp", ".tiff"]
+  
+  # 云存储配置 (可选)
+  cloud:
+    enabled: false
+    provider: "aws"  # aws, aliyun, qcloud
+    bucket: ""
+    region: ""
+    access_key: ""
+    secret_key: ""
+
+# ============================================================================
+# 诊断配置 (Diagnosis Configuration)
+# ============================================================================
+diagnosis:
+  # 置信度阈值
+  confidence_threshold: 0.7
+  
+  # 支持的痤疮类型
+  acne_types:
+    - "轻度痤疮"
+    - "中度痤疮"
+    - "重度痤疮"
+    - "粉刺型痤疮"
+    - "丘疹型痤疮"
+    - "脓疱型痤疮"
+    - "结节型痤疮"
+  
+  # 中医证型配置
+  tcm_syndromes:
+    - "肺胃热盛"
+    - "脾胃湿热"
+    - "肝郁气滞"
+    - "冲任不调"
+    - "血瘀痰凝"
+  
+  # 治疗建议配置
+  recommendations:
+    max_count: 5
+    include_tcm: true
+    include_western: true
+    personalized: true
+
+# ============================================================================
+# 开发配置 (Development Configuration)
+# ============================================================================
+development:
+  # 调试模式
+  debug: false
+  
+  # 自动重载
+  auto_reload: false
+  
+  # 性能分析
+  profiling:
+    enabled: false
+    output_dir: "profiling"
+  
+  # 测试配置
+  testing:
+    enabled: false
+    mock_model: false
+    test_data_dir: "tests/data"
+
+# ============================================================================
+# 生产配置 (Production Configuration)
+# ============================================================================
+production:
+  # 优化配置
+  optimization:
+    enabled: true
+    compile_model: true
+    use_tensorrt: false
+    use_onnx: false
+  
+  # 负载均衡
+  load_balancing:
+    enabled: false
+    strategy: "round_robin"  # round_robin, least_connections, weighted
+  
+  # 容错配置
+  fault_tolerance:
+    enabled: true
+    max_retries: 3
+    retry_delay: 1
+    circuit_breaker: true
+
+# ============================================================================
+# 通知配置 (Notification Configuration)
+# ============================================================================
+notification:
+  # 邮件通知
+  email:
+    enabled: false
+    smtp_server: ""
+    smtp_port: 587
+    username: ""
+    password: ""
+    from_address: ""
+    to_addresses: []
+  
+  # 钉钉通知
+  dingtalk:
+    enabled: false
+    webhook_url: ""
+    secret: ""
+  
+  # 企业微信通知
+  wechat_work:
+    enabled: false
+    webhook_url: ""
+
+# ============================================================================
+# 实验配置 (Experimental Configuration)
+# ============================================================================
+experimental:
+  # 新功能开关
+  features:
+    multi_modal_fusion: true
+    real_time_analysis: false
+    batch_processing: true
+    auto_annotation: false
+  
+  # A/B测试配置
+  ab_testing:
+    enabled: false
+    experiments: []
+  
+  # 模型版本管理
+  model_versioning:
+    enabled: false
+    auto_fallback: true
+    version_comparison: false
